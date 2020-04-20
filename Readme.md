@@ -21,7 +21,7 @@ Docker-compose version 3.7
  make load-news-json
 ```
 
-# Для запуска
+# Для запуска (default 171.10.3.103)
  - Для Production
 ```sh
  make start-prod
