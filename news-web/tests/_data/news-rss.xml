@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title><![CDATA[РБК - Все материалы]]></title>
+        <link>https://www.rbc.ru/</link>
+        <description>rss.rbc.ru</description>
+        <pubDate>Thu, 16 Apr 2020 16:18:35 +0300</pubDate>
+        <image>
+            <url>http://pics.rbc.ru/img/fp_v4/skin/img/v6-logo.png</url>
+            <title><![CDATA[Главные новости]]></title>
+            <link>https://www.rbc.ru/</link>
+        </image>
+        <item>
+            <title><![CDATA[Минэнерго США предложило заплатить компаниям за отказ от добычи нефти]]></title>
+            <link>https://www.rbc.ru/economics/16/04/2020/5e9849379a7947dce4f10a2b</link>
+            <description>
+                <![CDATA[По текущей рыночной цене 365 млн барр. нефти марки WTI могут быть приобретены, чтобы оставить их под землей, примерно за $7,25 млрд. После восстановления цен их продажа может принести властям США несколько миллиардов долларов]]></description>
+            <author>Евгений Калюков</author>
+            <guid>5e9849379a7947dce4f10a2b</guid>
+            <pubDate>Thu, 16 Apr 2020 16:17:40 +0300</pubDate>
+            <enclosure url="http://s0.rbk.ru/v6_top_pics/media/img/6/16/755870403952166.jpeg"
+                       type="image/jpeg"
+                       length=""/>
+        </item>
+        <item>
+            <title><![CDATA[Эксперты назвали сроки пика заражения коронавирусом в России]]></title>
+            <link>https://www.rbc.ru/rbcfreenews/5e9854509a7947e2a2934ec7</link>
+            <guid>5e9854509a7947e2a2934ec7</guid>
+            <pubDate>Thu, 16 Apr 2020 16:15:48 +0300</pubDate>
+            <enclosure url="http://s0.rbk.ru/v6_top_pics/media/img/4/84/755870416375844.jpeg"
+                       type="image/jpeg"
+                       length=""/>
+        </item>
+    </channel>
+</rss>

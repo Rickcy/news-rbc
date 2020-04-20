@@ -1,0 +1,43 @@
+#front
+server {
+    listen 80;
+    listen [::]:80;
+    server_name news.loc;
+    error_log  /var/log/nginx/news-error.log;
+    access_log /var/log/nginx/news-access.log;
+
+    root /app/dist;
+    index index.html;
+
+    location = /favicon.ico {
+      log_not_found off;
+      access_log off;
+    }
+
+    location = /robots.txt {
+      allow all;
+      log_not_found off;
+      access_log off;
+    }
+
+    location / {
+        try_files $uri $uri/ @rewrites;
+     }
+
+     location @rewrites {
+       rewrite ^(.+)$ /index.html last;
+     }
+
+     location /api {
+            rewrite ^/api(/.*) $1 break;
+            proxy_pass http://news-web:80;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header Host $host;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      }
+
+      location ~ /\. {
+        deny all;
+      }
+
+}

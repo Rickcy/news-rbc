@@ -1,0 +1,22 @@
+#api
+server {
+    listen 80;
+    listen [::]:80;
+    server_name api.news.loc;
+    index index.php;
+    error_log  /var/log/nginx/news-error.log;
+    access_log /var/log/nginx/news-access.log;
+    root /app/web;
+
+    location / {
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+
+    location ~ \.php$ {
+     	try_files $uri =404;
+        include /etc/nginx/fastcgi_params;
+        fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}

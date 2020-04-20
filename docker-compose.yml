@@ -1,0 +1,71 @@
+version: "3.7"
+services:
+
+  news-web:
+    hostname: api.news.dev
+    container_name: news-web
+    restart: always
+    build:
+      context: ./docker/web
+      args:
+        - UID=${UID}
+        - GID=${GID}
+    volumes:
+      - ./news-web:/app
+    networks:
+      outer-net:
+        ipv4_address: ${DOCKER_NEWS_WEB_NET}
+    depends_on:
+      - news-db
+    ports:
+      - ${DOCKER_NEWS_WEB_PORT}
+
+  news-db:
+    build:
+      context: ./docker/mysql
+    container_name: news-db
+    restart: always
+    volumes:
+      - ./docker/mysql/mysql.conf:/etc/mysql/conf.d/mysql.cnf:ro
+      - mysql-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASS}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASS}
+    networks:
+      outer-net:
+        ipv4_address: ${DOCKER_NEWS_DB_NET}
+    ports:
+      - ${DOCKER_NEWS_DB_PORT}
+
+  news-front:
+    hostname: news.dev
+    container_name: news-front
+    restart: always
+    env_file:
+      - .env
+    build:
+      context: ./docker/node
+      args:
+        - UID=${UID}
+        - GID=${GID}
+    volumes:
+      - ./news-front:/app
+    networks:
+      outer-net:
+        ipv4_address: ${DOCKER_NEWS_FRONT_NET}
+    depends_on:
+      - news-db
+      - news-web
+    ports:
+      - ${DOCKER_NEWS_FRONT_PORT}
+
+volumes:
+  mysql-data:
+
+networks:
+  outer-net:
+    ipam:
+      config:
+        - subnet: ${DOCKER_SUBNET}
